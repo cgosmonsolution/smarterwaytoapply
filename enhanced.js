@@ -2,6 +2,18 @@
 // Version 2.0 - Dynamic and Interactive Features
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Enhanced features loading...');
+    
+    // Initialize AOS if available
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+        console.log('AOS animations initialized');
+    }
+
     // Enhanced Testimonial Features
     const testimonialSlides = document.querySelectorAll('.testimonial-slide');
     const testimonialDots = document.querySelectorAll('.testimonial-dot');
@@ -23,11 +35,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize first testimonial
     if (testimonialSlides.length > 0) {
         showTestimonial(0);
+        console.log('Testimonials initialized');
     }
 
     // Dot click handlers
     testimonialDots.forEach((dot, index) => {
-        dot.addEventListener('click', () => showTestimonial(index));
+        dot.addEventListener('click', () => {
+            console.log('Testimonial dot clicked:', index);
+            showTestimonial(index);
+        });
     });
 
     // Auto-rotate testimonials
@@ -38,7 +54,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    setInterval(showNextTestimonial, 5000);
+    if (testimonialSlides.length > 0) {
+        setInterval(showNextTestimonial, 5000);
+        console.log('Auto-rotation testimonials started');
+    }
 
     // Dynamic Particles Background
     function createParticle() {
@@ -79,7 +98,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Create particles periodically
-    setInterval(createParticle, 1200);
+    const particlesCanvas = document.getElementById('particles-canvas');
+    if (particlesCanvas) {
+        setInterval(createParticle, 1200);
+        console.log('Particle animation started');
+    }
 
     // Enhanced Touch and Swipe Support
     let touchStartX = 0;
@@ -107,6 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
             touchEndX = e.changedTouches[0].screenX;
             handleGesture();
         });
+        console.log('Touch gestures initialized');
     }
 
     // Enhanced Form Interactions
@@ -216,44 +240,6 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(keyboardStyles);
 
-    // Performance Optimization - Lazy Loading
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    if (img.dataset.src) {
-                        img.src = img.dataset.src;
-                        img.classList.remove('lazy');
-                        imageObserver.unobserve(img);
-                    }
-                }
-            });
-        });
-
-        document.querySelectorAll('img[data-src]').forEach(img => {
-            imageObserver.observe(img);
-        });
-    }
-
-    // Enhanced Error Reporting
-    window.addEventListener('error', function(e) {
-        console.error('Application Error:', e.error);
-    });
-
-    // Form Analytics Tracking
-    function trackFormInteraction(action, data = {}) {
-        console.log('Form Event:', action, data);
-        
-        // Example integration with Google Analytics
-        if (typeof gtag !== 'undefined') {
-            gtag('event', action, {
-                'custom_parameter_1': data.step || '',
-                'custom_parameter_2': data.field || ''
-            });
-        }
-    }
-
     // Enhanced checkbox interactions
     document.querySelectorAll('.checkbox-container input[type="checkbox"]').forEach(checkbox => {
         checkbox.addEventListener('change', function() {
@@ -268,17 +254,58 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Add progressive enhancement for older browsers
-    if (!window.fetch) {
-        console.warn('This browser does not support fetch API. Form submission may not work.');
-    }
-
-    // Add service worker registration for offline capability (optional)
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js').catch(err => {
-            console.log('Service worker registration failed:', err);
+    // Progress step navigation enhancement
+    const progressSteps = document.querySelectorAll('.progress-step-item');
+    progressSteps.forEach((step, index) => {
+        step.addEventListener('click', () => {
+            console.log('Progress step clicked:', index + 1);
+            // This would require access to the main form's updateUI function
+            // For now, we'll just add visual feedback
+            step.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                step.style.transform = 'scale(1)';
+            }, 150);
         });
+    });
+
+    // Form field enhancements
+    const fileInput = document.getElementById('resume');
+    if (fileInput) {
+        const dropZone = fileInput.closest('.text-center');
+        if (dropZone) {
+            // Drag and drop functionality
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.classList.add('border-blue-400', 'bg-blue-50');
+            });
+            
+            dropZone.addEventListener('dragleave', () => {
+                dropZone.classList.remove('border-blue-400', 'bg-blue-50');
+            });
+            
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('border-blue-400', 'bg-blue-50');
+                if (e.dataTransfer.files.length > 0) {
+                    fileInput.files = e.dataTransfer.files;
+                    // Trigger change event
+                    fileInput.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+            });
+            console.log('Drag & drop file upload initialized');
+        }
     }
 
-    console.log('Jess Recruiting Application Form - Enhanced Version Loaded Successfully! 🚗✨');
+    // Add service worker registration for offline capability
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+                console.log('Service Worker registered successfully:', registration);
+            })
+            .catch(err => {
+                console.log('Service worker registration failed:', err);
+            });
+    }
+
+    console.log('Enhanced features loaded successfully! 🚗✨');
 });

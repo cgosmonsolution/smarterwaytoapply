@@ -4,6 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jess Recruiting - A Smarter Way to Apply for Automotive Jobs</title>
+    <meta name="description" content="Join top automotive professionals with Jess Recruiting. One application connects you with premier repair shops and dealerships. Start your career today!">
+    <meta name="keywords" content="automotive jobs, mechanic jobs, auto technician, dealership careers, repair shop jobs, automotive recruitment">
+    <meta name="author" content="Jess Recruiting">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://white-river-0fc546b10.1.azurestaticapps.net/">
+    <meta property="og:title" content="Jess Recruiting - A Smarter Way to Apply for Automotive Jobs">
+    <meta property="og:description" content="One application connects you with top-tier repair shops and dealerships. Stop searching, start getting noticed.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://white-river-0fc546b10.1.azurestaticapps.net/">
+    <meta property="twitter:title" content="Jess Recruiting - A Smarter Way to Apply for Automotive Jobs">
+    <meta property="twitter:description" content="One application connects you with top-tier repair shops and dealerships.">
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -117,8 +134,17 @@
         }
 
         /* Enhanced input styling with focus effects */
-        .input-wrapper { @apply relative; }
-        .input-icon { @apply absolute top-1/2 left-4 -translate-y-1/2 text-gray-400 transition-colors duration-200; }
+        .input-wrapper { 
+            position: relative; 
+        }
+        .input-icon { 
+            position: absolute; 
+            top: 50%; 
+            left: 1rem; 
+            transform: translateY(-50%); 
+            color: #9ca3af; 
+            transition: color 0.2s;
+        }
         
         input[type="text"],
         input[type="email"],
@@ -126,9 +152,30 @@
         input[type="date"],
         select,
         textarea {
-            @apply mt-1 block w-full py-4 px-5 border border-gray-300 bg-white rounded-lg shadow-sm transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[var(--light-blue)] focus:border-[var(--light-blue)] text-lg;
+            margin-top: 0.25rem;
+            display: block;
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 1px solid #d1d5db;
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease-in-out;
+            font-size: 1.125rem;
         }
-        .has-icon { @apply pl-12; }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="date"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--light-blue);
+            border-color: var(--light-blue);
+        }
+        .has-icon { 
+            padding-left: 3rem; 
+        }
 
         input:focus + .input-icon,
         select:focus + .input-icon {
@@ -138,13 +185,40 @@
         /* Enhanced validation styling */
         .border-red-500 {
             border-color: #ef4444 !important;
-            --tw-ring-color: #ef4444 !important;
+            box-shadow: 0 0 0 2px #ef4444 !important;
         }
-        .validation-error { @apply text-red-600 text-sm mt-2; }
+        .validation-error { 
+            color: #dc2626; 
+            font-size: 0.875rem; 
+            margin-top: 0.5rem; 
+        }
 
         /* Enhanced button styling with better hover effects */
         .btn {
-            @apply font-semibold py-4 px-10 rounded-lg shadow-md hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:-translate-y-1 uppercase tracking-wider text-base relative overflow-hidden;
+            font-weight: 600;
+            padding: 1rem 2.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            transform: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .btn:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: translateY(-1px);
+        }
+        .btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1), 0 0 0 4px var(--jess-yellow);
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
         .btn::before {
             content: '';
@@ -170,8 +244,11 @@
             transform: translateY(-2px) scale(1.02);
         }
         .btn-secondary {
-            @apply text-gray-700 bg-gray-200 hover:bg-gray-300;
-            --tw-ring-color: #6b7280;
+            color: #374151;
+            background-color: #e5e7eb;
+        }
+        .btn-secondary:hover { 
+            background-color: #d1d5db; 
         }
         
         /* Enhanced spinner */
@@ -189,29 +266,65 @@
         
         /* Enhanced Progress Bar with better animations */
         .progress-step-item { 
-            @apply flex items-start p-4 rounded-xl border-2 border-transparent transition-all duration-500 cursor-pointer hover:bg-gray-50; 
+            display: flex;
+            align-items: flex-start;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            border: 2px solid transparent;
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+        .progress-step-item:hover {
+            background-color: #f9fafb;
         }
         .progress-step-item .icon-wrapper {
-            @apply flex-shrink-0 w-12 h-12 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center mr-4 transition-all duration-500;
+            flex-shrink: 0;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background-color: #e5e7eb;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            transition: all 0.5s ease;
         }
-        .progress-step-item .step-text .step-number { @apply text-sm font-semibold text-gray-500 transition-colors duration-300; }
-        .progress-step-item .step-text .step-title { @apply text-lg font-bold text-gray-700 transition-colors duration-300; }
+        .progress-step-item .step-text .step-number { 
+            font-size: 0.875rem; 
+            font-weight: 600; 
+            color: #6b7280; 
+            transition: color 0.3s;
+        }
+        .progress-step-item .step-text .step-title { 
+            font-size: 1.125rem; 
+            font-weight: 700; 
+            color: #374151; 
+            transition: color 0.3s;
+        }
 
         .progress-step-item.active {
-            @apply bg-[var(--jess-yellow-light)] border-[var(--jess-yellow)];
+            background-color: var(--jess-yellow-light);
+            border-color: var(--jess-yellow);
             transform: scale(1.02);
         }
         .progress-step-item.active .icon-wrapper {
-            @apply bg-[var(--jess-yellow)] text-gray-900;
+            background-color: var(--jess-yellow);
+            color: #111827;
             animation: pulse 2s infinite;
         }
-        .progress-step-item.active .step-text .step-title { @apply text-gray-900; }
+        .progress-step-item.active .step-text .step-title { 
+            color: #111827; 
+        }
 
         .progress-step-item.completed .icon-wrapper {
-            @apply bg-green-500 text-white;
+            background-color: #10b981;
+            color: white;
             animation: bounce 0.5s;
         }
-        .progress-step-item.completed .step-text .step-title { @apply text-gray-500; }
+        .progress-step-item.completed .step-text .step-title { 
+            color: #6b7280; 
+        }
 
         /* Interactive hover effects */
         .card-hover {
@@ -224,10 +337,12 @@
 
         /* Checkbox styling improvements */
         .checkbox-container {
-            @apply relative;
+            position: relative;
         }
         .checkbox-container input:checked + .checkbox-label {
-            @apply bg-blue-50 border-[var(--light-blue)] transform scale-105;
+            background-color: #eff6ff;
+            border-color: var(--light-blue);
+            transform: scale(1.05);
         }
 
         /* Loading overlay */
@@ -287,15 +402,15 @@
             <!-- Statistics Counter -->
             <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="900">
                 <div class="text-center">
-                    <div class="text-4xl font-bold text-[var(--jess-yellow)] stat-number" data-target="500">0</div>
+                    <div class="text-4xl font-bold text-[var(--jess-yellow)] stat-number" data-target="500">51</div>
                     <div class="text-sm text-gray-300 mt-2">Jobs Filled</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-4xl font-bold text-[var(--jess-yellow)] stat-number" data-target="150">0</div>
+                    <div class="text-4xl font-bold text-[var(--jess-yellow)] stat-number" data-target="150">25</div>
                     <div class="text-sm text-gray-300 mt-2">Partner Shops</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-4xl font-bold text-[var(--jess-yellow)] stat-number" data-target="98">0</div>
+                    <div class="text-4xl font-bold text-[var(--jess-yellow)] stat-number" data-target="98">95</div>
                     <div class="text-sm text-gray-300 mt-2">Success Rate %</div>
                 </div>
             </div>
@@ -869,6 +984,76 @@
 
             // --- Initial Setup ---
             updateUI();
+
+            // Initialize AOS animations if library is loaded
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 1000,
+                    once: true,
+                    offset: 100
+                });
+            }
+
+            // Enhanced loading experience
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            if (loadingOverlay) {
+                setTimeout(() => {
+                    loadingOverlay.classList.remove('active');
+                }, 1500);
+            }
+
+            // Progress bar enhancement
+            const progressBar = document.getElementById('progressBar');
+            const progressPercent = document.getElementById('progressPercent');
+            
+            if (progressBar && progressPercent) {
+                const originalUpdateUI = updateUI;
+                updateUI = function() {
+                    originalUpdateUI();
+                    // Update progress percentage and bar
+                    const progress = (currentStep / totalSteps) * 100;
+                    progressBar.style.width = `${progress}%`;
+                    progressPercent.textContent = `${Math.round(progress)}%`;
+                };
+            }
+
+            // Enhanced statistics counter
+            function animateCounter(element, target, duration = 2000) {
+                let current = 0;
+                const increment = target / (duration / 16);
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    element.textContent = Math.floor(current);
+                }, 16);
+            }
+
+            // Trigger counters when hero section is visible
+            if (statNumbers.length > 0) {
+                const observerOptions = {
+                    threshold: 0.5,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const counterObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const target = parseInt(entry.target.dataset.target);
+                            animateCounter(entry.target, target);
+                            counterObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                statNumbers.forEach(stat => {
+                    counterObserver.observe(stat);
+                });
+            }
+
+            console.log('Jess Recruiting Application - Enhanced Version Loaded Successfully! 🚗✨');
         });
     </script>
     
