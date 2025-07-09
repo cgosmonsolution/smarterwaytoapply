@@ -1,0 +1,24 @@
+{
+  "name": "jess-recruiting-application",
+  "version": "1.0.0",
+  "description": "A smarter way to apply for automotive jobs - Jess Recruiting application form",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve -s .",
+    "build": "echo 'Static site - no build required'",
+    "deploy": "echo 'Ready for Azure Static Web Apps deployment'"
+  },
+  "keywords": [
+    "automotive",
+    "jobs",
+    "recruiting",
+    "application",
+    "form"
+  ],
+  "author": "Jess Recruiting",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+}
