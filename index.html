@@ -979,20 +979,70 @@
                             <!-- Step 5: Resume and Finish -->
                             <div class="form-step" data-step="5">
                                 <h3 id="submit-title" class="font-bold text-3xl text-gray-800 mb-2">Almost there!</h3>
-                                <p class="text-gray-500 mb-8">Upload your resume to complete your application.</p>
-                                <div class="max-w-lg mx-auto">
-                                    <div class="text-center p-8 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50 hover:border-[var(--light-blue)] transition">
-                                        <svg class="mx-auto h-12 w-12 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                          <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
-                                        </svg>
-                                        <label for="resume" class="mt-4 text-xl font-semibold text-gray-800 cursor-pointer">Upload Your Resume</label>
-                                        <p class="text-base text-gray-500 mt-2">PDF, DOC, DOCX files accepted. Max 5MB.</p>
-                                        <input type="file" id="resume" name="resume" class="hidden">
-                                        <p id="fileName" class="mt-3 text-sm text-green-600 font-semibold"></p>
+                                <p class="text-gray-500 mb-8">Upload your documents to complete your application.</p>
+                                <div class="max-w-2xl mx-auto space-y-8">
+                                    <!-- Resume Upload -->
+                                    <div>
+                                        <h4 class="text-lg font-semibold text-gray-800 mb-3">Resume (Required)</h4>
+                                        <div class="text-center p-6 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50 hover:border-[var(--light-blue)] transition">
+                                            <svg class="mx-auto h-10 w-10 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
+                                            </svg>
+                                            <label for="resume" class="mt-2 text-lg font-semibold text-gray-800 cursor-pointer">Upload Your Resume</label>
+                                            <p class="text-sm text-gray-500 mt-1">PDF, DOC, DOCX files accepted. Max 5MB.</p>
+                                            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" class="hidden">
+                                            <p id="fileName" class="mt-2 text-sm text-green-600 font-semibold"></p>
+                                        </div>
                                     </div>
-                                    <div class="mt-6">
-                                        <label for="coverNote">Short Statement (Optional)</label>
-                                        <textarea id="coverNote" name="coverNote" rows="4" placeholder="Tell us about your ideal next role. What are you looking for in a shop?"></textarea>
+
+                                    <!-- Flat Rate Report Upload -->
+                                    <div>
+                                        <h4 class="text-lg font-semibold text-gray-800 mb-3">Flat Rate Report (Optional but Recommended)</h4>
+                                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                                            <div class="flex items-start">
+                                                <svg class="h-5 w-5 text-blue-500 mt-0.5 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                  <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                                                </svg>
+                                                <div>
+                                                    <p class="text-sm text-blue-800 font-medium">Stand out from other candidates!</p>
+                                                    <p class="text-sm text-blue-700 mt-1">A flat rate report shows your productivity and helps us match you with shops that value high-performing technicians. Most shops can generate this report from their management system.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-center p-6 border-2 border-dashed border-blue-200 rounded-lg bg-blue-50/30 hover:border-blue-400 transition">
+                                            <svg class="mx-auto h-10 w-10 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0-1.125-.504-1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                            </svg>
+                                            <label for="flatRateReport" class="mt-2 text-lg font-semibold text-gray-800 cursor-pointer">Upload Flat Rate Report</label>
+                                            <p class="text-sm text-gray-600 mt-1">PDF, Excel, or image files accepted. Max 5MB.</p>
+                                            <input type="file" id="flatRateReport" name="flatRateReport" accept=".pdf,.xlsx,.xls,.jpg,.jpeg,.png" class="hidden">
+                                            <p id="flatRateFileName" class="mt-2 text-sm text-green-600 font-semibold"></p>
+                                        </div>
+                                        
+                                        <!-- Help accessing flat rate report -->
+                                        <div class="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                                            <div class="flex items-start">
+                                                <svg class="h-5 w-5 text-gray-500 mt-0.5 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                                                </svg>
+                                                <div>
+                                                    <p class="text-sm text-gray-700 font-medium">Need help getting your flat rate report?</p>
+                                                    <p class="text-sm text-gray-600 mt-1">Ask your service manager for a "productivity report" or "flat rate efficiency report" from your shop's management system. Can't access it? Use our free tool:</p>
+                                                    <a href="https://flatratepro.jessrecruiting.com/" target="_blank" class="inline-flex items-center mt-2 text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors">
+                                                        <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                                        </svg>
+                                                        Flat Rate Pro Tool - Track Your Performance
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Cover Note -->
+                                    <div>
+                                        <label for="coverNote" class="block text-sm font-medium text-gray-700 mb-2">Short Statement (Optional)</label>
+                                        <textarea id="coverNote" name="coverNote" rows="4" placeholder="Tell us about your ideal next role. What are you looking for in a shop?" class="w-full"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -1075,461 +1125,20 @@
         <div class="container mx-auto px-6 py-8 text-center">
             <p class="text-lg font-bold">Jess Recruiting</p>
             <p class="mt-2 text-gray-400">Connecting top automotive talent with premier shops.</p>
-            <p class="mt-4 text-sm text-gray-500">&copy; 2024 Jess Recruiting. All rights reserved. | <a href="https://jessrecruiting.com" class="hover:underline">Back to Main Site</a></p>
+            <p class="mt-4 text-sm text-gray-500">&copy; 2025 Jess Recruiting. All rights reserved. | <a href="https://jessrecruiting.com" class="hover:underline">Back to Main Site</a></p>
         </div>
     </footer>
 
 
-    <script>
-        // Mobile-specific optimizations and touch enhancements
-        function initMobileOptimizations() {
-            // Detect mobile device
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-            
-            if (isMobile || isTouch) {
-                document.body.classList.add('mobile-device');
-                
-                // Prevent zoom on input focus for iOS
-                const inputs = document.querySelectorAll('input, select, textarea');
-                inputs.forEach(input => {
-                    input.addEventListener('focus', function() {
-                        document.querySelector('meta[name="viewport"]').setAttribute('content', 
-                            'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-                    });
-                    
-                    input.addEventListener('blur', function() {
-                        setTimeout(() => {
-                            document.querySelector('meta[name="viewport"]').setAttribute('content', 
-                                'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
-                        }, 100);
-                    });
-                });
-                
-                // Enhanced touch interactions for testimonial carousel
-                let touchStartX = 0;
-                let touchEndX = 0;
-                const carousel = document.getElementById('testimonialCarousel');
-                
-                if (carousel) {
-                    carousel.addEventListener('touchstart', function(e) {
-                        touchStartX = e.changedTouches[0].screenX;
-                    }, { passive: true });
-                    
-                    carousel.addEventListener('touchend', function(e) {
-                        touchEndX = e.changedTouches[0].screenX;
-                        handleSwipe();
-                    }, { passive: true });
-                    
-                    function handleSwipe() {
-                        const swipeThreshold = 50;
-                        const diff = touchStartX - touchEndX;
-                        
-                        if (Math.abs(diff) > swipeThreshold) {
-                            const dots = document.querySelectorAll('.testimonial-dot');
-                            const activeDot = document.querySelector('.testimonial-dot.active');
-                            let currentIndex = Array.from(dots).indexOf(activeDot) || 0;
-                            
-                            if (diff > 0 && currentIndex < dots.length - 1) {
-                                // Swipe left - next testimonial
-                                dots[currentIndex + 1].click();
-                            } else if (diff < 0 && currentIndex > 0) {
-                                // Swipe right - previous testimonial
-                                dots[currentIndex - 1].click();
-                            }
-                        }
-                    }
-                }
-                
-                // Improve form scrolling on mobile
-                const formSteps = document.querySelectorAll('.form-step');
-                formSteps.forEach(step => {
-                    step.addEventListener('transitionend', function() {
-                        if (step.classList.contains('active')) {
-                            // Smooth scroll to top of form on mobile
-                            const formElement = document.getElementById('application-form');
-                            if (formElement && window.innerWidth <= 768) {
-                                setTimeout(() => {
-                                    formElement.scrollIntoView({ 
-                                        behavior: 'smooth', 
-                                        block: 'start',
-                                        inline: 'nearest' 
-                                    });
-                                }, 300);
-                            }
-                        }
-                    });
-                });
-            }
-            
-            // Optimize performance on mobile
-            if (window.innerWidth <= 768) {
-                // Reduce animation complexity on mobile
-                const particles = document.querySelectorAll('.particle');
-                particles.forEach(particle => particle.remove());
-                
-                // Optimize AOS settings for mobile
-                if (typeof AOS !== 'undefined') {
-                    AOS.refresh({
-                        duration: 600,
-                        offset: 50,
-                        once: true
-                    });
-                }
-            }
-        }
-        
-        // Initialize mobile optimizations as soon as possible
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initMobileOptimizations);
-        } else {
-            initMobileOptimizations();
-        }
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM Content Loaded - Starting form initialization');
-            
-            // --- Element Selections ---
-            const formContainer = document.getElementById('form-container');
-            const form = document.getElementById('multiStepForm');
-            const steps = Array.from(document.querySelectorAll('.form-step'));
-            const nextBtn = document.querySelector('.next-btn');
-            const prevBtn = document.querySelector('.prev-btn');
-            const submitBtn = document.getElementById('submitBtn');
-            const progressSteps = document.querySelectorAll('.progress-step-item');
-            
-            console.log('Form elements found:', {
-                form: !!form,
-                submitBtn: !!submitBtn,
-                nextBtn: !!nextBtn,
-                prevBtn: !!prevBtn,
-                steps: steps.length
-            });
-            
-            const successMessage = document.getElementById('successMessage');
-            const errorMessage = document.getElementById('errorMessage');
-            const btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
-            const spinner = submitBtn ? submitBtn.querySelector('.spinner') : null;
-
-            // --- State ---
-            let currentStep = 1;
-            const totalSteps = steps.length;
-            let applicantFirstName = '';
-
-            // --- UI Update Function ---
-            function updateUI() {
-                // Update form step visibility
-                steps.forEach(step => step.classList.toggle('active', parseInt(step.dataset.step) === currentStep));
-
-                // Update progress bar
-                progressSteps.forEach(item => {
-                    const stepNum = parseInt(item.dataset.stepNav);
-                    item.classList.remove('active', 'completed');
-                    if (stepNum === currentStep) {
-                        item.classList.add('active');
-                    } else if (stepNum < currentStep) {
-                        item.classList.add('completed');
-                        // Change icon to checkmark on complete
-                        const icon = item.querySelector('.icon-wrapper');
-                        icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>`;
-                    }
-                });
-
-                // Update buttons
-                prevBtn.classList.toggle('invisible', currentStep === 1);
-                nextBtn.classList.toggle('hidden', currentStep === totalSteps);
-                submitBtn.classList.toggle('hidden', currentStep !== totalSteps);
-                
-                // Personalize last step
-                if(currentStep === totalSteps) {
-                    applicantFirstName = document.getElementById('fullName').value.split(' ')[0] || '';
-                    const submitTitle = document.getElementById('submit-title');
-                    if(applicantFirstName) {
-                        submitTitle.textContent = `Alright, ${applicantFirstName}, one last step!`;
-                    }
-                }
-            }
-
-            // --- Validation ---
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-            function validateField(field) {
-                const errorSpan = field.parentElement.querySelector('.validation-error');
-                let isValid = true;
-                field.classList.remove('border-red-500');
-                if (errorSpan) errorSpan.classList.add('hidden');
-
-                if (field.required && !field.value.trim()) isValid = false;
-                else if (field.type === 'email' && field.value.trim() && !emailRegex.test(field.value)) isValid = false;
-                else if (field.type === 'date' && field.required && !field.value) isValid = false;
-
-                if (!isValid) {
-                    field.classList.add('border-red-500');
-                    if (errorSpan) errorSpan.classList.remove('hidden');
-                }
-                return isValid;
-            }
-            
-            function validateCurrentStep() {
-                const currentStepElement = steps[currentStep - 1];
-                const fieldsToValidate = currentStepElement.querySelectorAll('input[required], select[required], textarea[required]');
-                let isStepValid = true;
-                fieldsToValidate.forEach(field => {
-                    if (!validateField(field)) isStepValid = false;
-                });
-                return isStepValid;
-            }
-
-            // --- Event Listeners ---
-            nextBtn.addEventListener('click', () => {
-                if (validateCurrentStep()) {
-                    if (currentStep < totalSteps) {
-                        currentStep++;
-                        updateUI();
-                    }
-                }
-            });
-
-            prevBtn.addEventListener('click', () => {
-                if (currentStep > 1) {
-                    currentStep--;
-                    updateUI();
-                }
-            });
-
-            // Real-time validation
-            form.querySelectorAll('input[required], select[required]').forEach(field => {
-                field.addEventListener('input', () => validateField(field));
-                field.addEventListener('change', () => validateField(field));
-            });
-            
-            // Custom file input
-            const resumeInput = document.getElementById('resume');
-            const fileNameDisplay = document.getElementById('fileName');
-            const resumeLabel = document.querySelector('label[for="resume"]');
-            
-            // Add safety checks
-            if (resumeLabel && resumeLabel.parentElement) {
-                resumeLabel.parentElement.addEventListener('click', () => resumeInput.click());
-            }
-            
-            if (resumeInput) {
-                resumeInput.addEventListener('change', () => {
-                    if (resumeInput.files.length > 0) {
-                        if (fileNameDisplay) {
-                            fileNameDisplay.textContent = `File selected: ${resumeInput.files[0].name}`;
-                        }
-                    } else {
-                        if (fileNameDisplay) {
-                            fileNameDisplay.textContent = '';
-                        }
-                    }
-                });
-            }
-
-            // --- Form Submission ---
-            function fileToBase64(file) {
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.readAsDataURL(file);
-                    reader.onload = () => resolve(reader.result.split(',')[1]);
-                    reader.onerror = error => reject(error);
-                });
-            }
-
-            // Only add form submission listener if form exists
-            if (form) {
-                form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                if (!validateCurrentStep()) return;
-
-                if (submitBtn) {
-                    submitBtn.disabled = true;
-                }
-                if (btnText) {
-                    btnText.textContent = 'Submitting...';
-                }
-                if (spinner) {
-                    spinner.classList.remove('hidden');
-                }
-
-                // Power Automate URL provided by user
-                const powerAutomateUrl = 'https://f5b1d9c5f3cae77bbd0a47e9d05b5c.17.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/de7ecf3454634a98a76282f3f046f43a/triggers/manual/paths/invoke/?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vtKu5ftKb6i5T6feS-MgqSUdJxOsYNM0Mq8Fg79aSxs';
-                
-                // Collect all form data
-                const formData = new FormData(form);
-                const payload = {
-                    submissionDate: new Date().toISOString(),
-                    applicationId: 'APP-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9)
-                };
-                
-                // Process regular form fields with exact names expected by Power Automate
-                for (const [key, value] of formData.entries()) {
-                    if (key === 'resume') continue; // Handle file separately
-                    
-                    if (payload[key]) {
-                        // Handle multiple values (like checkboxes)
-                        if (!Array.isArray(payload[key])) payload[key] = [payload[key]];
-                        payload[key].push(value);
-                    } else {
-                        payload[key] = value;
-                    }
-                }
-
-                // Convert array fields to comma-separated strings for easier processing
-                if (payload.availability && Array.isArray(payload.availability)) {
-                    payload.availability = payload.availability.join(', ');
-                }
-
-                // Relocate field is now properly collected from the form
-
-                // Handle resume file with exact field names expected by Power Automate
-                const resumeFile = resumeInput.files[0];
-                if (resumeFile) {
-                    payload.resumeName = resumeFile.name;  // This matches your email template
-                    payload.resumeFileName = resumeFile.name; // Backup field name
-                    payload.resumeFileSize = resumeFile.size;
-                    payload.resumeFileType = resumeFile.type;
-                    
-                    try {
-                        // Convert file to base64 for transmission
-                        payload.resumeContent = await fileToBase64(resumeFile);  // This matches your email template
-                        payload.resumeFileContent = payload.resumeContent; // Backup field name
-                        payload.hasResume = true;
-                    } catch (error) {
-                        console.error('Error processing resume file:', error);
-                        showResult(errorMessage, 'Error processing resume file: ' + error.message);
-                        return;
-                    }
-                } else {
-                    payload.resumeName = 'No file uploaded';
-                    payload.resumeFileName = 'No file uploaded';
-                    payload.resumeFileSize = 0;
-                    payload.resumeFileType = null;
-                    payload.resumeContent = '';
-                    payload.resumeFileContent = '';
-                    payload.hasResume = false;
-                }
-
-                // Add metadata
-                payload.userAgent = navigator.userAgent;
-                payload.screenResolution = `${screen.width}x${screen.height}`;
-                payload.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-                console.log('Submitting payload to Power Automate:', payload);
-
-                try {
-                    const response = await fetch(powerAutomateUrl, {
-                        method: 'POST',
-                        headers: { 
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
-                        body: JSON.stringify(payload),
-                    });
-
-                    console.log('Response status:', response.status);
-                    console.log('Response headers:', response.headers);
-
-                    if (response.ok) {
-                        const responseData = await response.text();
-                        console.log('Success response:', responseData);
-                        showResult(successMessage);
-                    } else {
-                        const responseText = await response.text();
-                        console.error('Error response:', responseText);
-                        showResult(errorMessage, `Status: ${response.status}, Response: ${responseText}`);
-                    }
-                } catch (error) {
-                    console.error('Network error:', error);
-                    showResult(errorMessage, 'Network error: ' + error.message);
-                }
-            });
-
-            function showResult(messageElement, errorInfo = '') {
-                // Reset button state with safety checks
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                }
-                if (btnText) {
-                    btnText.textContent = 'Submit Application';
-                }
-                if (spinner) {
-                    spinner.classList.add('hidden');
-                }
-                
-                if (messageElement && messageElement.id === 'successMessage') {
-                    const successText = document.getElementById('successText');
-                    if (successText) {
-                        successText.textContent = `Thank you, ${applicantFirstName || 'friend'}. We've received your application and will be in touch soon.`;
-                    }
-                    
-                    const returnBtn = document.getElementById('returnBtn');
-                    if (returnBtn) {
-                        returnBtn.addEventListener('click', () => window.location.reload());
-                    }
-                    
-                    // Keep form hidden on success
-                    if (form) {
-                        form.style.display = 'none';
-                    }
-                } else {
-                    // Show form again on error so user can retry
-                    // form.style.display = 'block'; // Uncomment if you want to show form on error
-                }
-                
-                if (messageElement) {
-                    messageElement.classList.remove('hidden');
-                    messageElement.classList.add('active');
-                }
-
-                if (errorInfo) console.error('Submission Error:', errorInfo);
-            }
-
-            // Close the if statement for form existence check
-            }
-
-            // --- Initial Setup ---
-            updateUI();
-
-            // Initialize AOS animations if library is loaded
-            if (typeof AOS !== 'undefined') {
-                AOS.init({
-                    duration: 1000,
-                    once: true,
-                    offset: 100
-                });
-            }
-
-            // Enhanced loading experience
-            const loadingOverlay = document.getElementById('loadingOverlay');
-            if (loadingOverlay) {
-                setTimeout(() => {
-                    loadingOverlay.classList.remove('active');
-                }, 1500);
-            }
-
-            // Progress bar enhancement
-            const progressBar = document.getElementById('progressBar');
-            const progressPercent = document.getElementById('progressPercent');
-            
-            if (progressBar && progressPercent) {
-                const originalUpdateUI = updateUI;
-                updateUI = function() {
-                    originalUpdateUI();
-                    // Update progress percentage and bar
-                    const progress = (currentStep / totalSteps) * 100;
-                    progressBar.style.width = `${progress}%`;
-                    progressPercent.textContent = `${Math.round(progress)}%`;
-                };
-            }
-
-            console.log('Jess Recruiting Application - Enhanced Version Loaded Successfully! 🚗✨');
-        });
-    </script>
     
     <!-- AOS Animation Library -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Mobile Optimizations -->
+    <script src="js/mobile-optimizations.js"></script>
+    
+    <!-- Form Handler -->
+    <script src="js/form-handler.js"></script>
     
     <!-- Enhanced Interactions -->
     <script src="enhanced.js"></script>
