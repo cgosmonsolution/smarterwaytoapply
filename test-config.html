@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration Test</title>
+</head>
+<body>
+    <h1>Configuration Test</h1>
+    <div id="test-results"></div>
+    
+    <script>
+        // Test if we can load the main JavaScript files
+        const testResults = document.getElementById('test-results');
+        
+        function testScriptLoad(src) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = () => resolve(`✓ ${src} loaded successfully`);
+                script.onerror = () => reject(`✗ ${src} failed to load`);
+                document.head.appendChild(script);
+            });
+        }
+        
+        async function runTests() {
+            const scripts = [
+                'form-handler.js',
+                'mobile-optimizations.js', 
+                'enhanced.js'
+            ];
+            
+            testResults.innerHTML = '<h2>Testing JavaScript file loading...</h2>';
+            
+            for (const script of scripts) {
+                try {
+                    const result = await testScriptLoad(script);
+                    testResults.innerHTML += `<p style="color: green;">${result}</p>`;
+                } catch (error) {
+                    testResults.innerHTML += `<p style="color: red;">${error}</p>`;
+                }
+            }
+            
+            testResults.innerHTML += '<h2>Test completed!</h2>';
+        }
+        
+        runTests();
+    </script>
+</body>
+</html>
