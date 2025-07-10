@@ -62,8 +62,8 @@
             background-position: center;
             position: relative;
             overflow: hidden;
-            max-height: 85vh; /* Ensure hero never takes more than 85% of viewport */
-            min-height: 500px; /* Minimum height for very small screens */
+            min-height: 600px; /* Increased minimum height */
+            padding: 2rem 0 3rem; /* Added bottom padding for button */
         }
         
         /* Logo styling */
@@ -72,6 +72,14 @@
             width: auto;
             margin-bottom: 1.5rem;
             filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        }
+        
+        /* Desktop hero section - ensure button visibility */
+        @media (min-width: 769px) {
+            .hero-section {
+                min-height: 650px; /* Ensure enough space for all content */
+                padding-bottom: 4rem; /* Extra space for button */
+            }
         }
         
         /* Mobile Optimizations */
@@ -84,9 +92,8 @@
             
             /* Hero section mobile optimizations */
             .hero-section {
-                padding: 2rem 0 1.5rem;
-                max-height: 90vh; /* Even more restrictive on mobile */
-                min-height: 450px;
+                padding: 2rem 0 2.5rem; /* Increased bottom padding */
+                min-height: 500px; /* Increased minimum height */
             }
             
             .hero-section .container {
@@ -128,7 +135,8 @@
             .btn {
                 padding: 0.75rem 1.5rem;
                 font-size: 0.875rem;
-                margin-top: 1rem !important;
+                margin-top: 2rem !important; /* Increased margin for visibility */
+                margin-bottom: 1rem; /* Added bottom margin */
             }
             
             /* Hide floating elements on mobile for performance */
@@ -231,9 +239,8 @@
         /* Small mobile devices (phones in portrait) */
         @media (max-width: 480px) {
             .hero-section {
-                max-height: 95vh; /* Very restrictive on small screens */
-                min-height: 400px;
-                padding: 1.5rem 0 1rem;
+                min-height: 450px; /* Ensured minimum height */
+                padding: 1.5rem 0 2rem; /* Adequate bottom padding */
             }
             
             .hero-section h1 {
@@ -258,6 +265,8 @@
             .btn {
                 padding: 0.75rem 1.5rem;
                 font-size: 0.875rem;
+                margin-top: 1.5rem !important;
+                margin-bottom: 1.5rem; /* Ensure button has space */
             }
             
             .form-step h3 {
@@ -806,7 +815,7 @@
                 </div>
             </div>
 
-            <a href="#application-form" class="btn btn-primary mt-4 text-lg pulse-border" data-aos="zoom-in" data-aos-delay="1100">
+            <a href="#application-form" class="btn btn-primary mt-8 text-lg pulse-border inline-block" data-aos="zoom-in" data-aos-delay="1100">
                 Start Your Application
                 <svg class="inline-block ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
