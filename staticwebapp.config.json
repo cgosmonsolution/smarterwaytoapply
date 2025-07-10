@@ -14,9 +14,7 @@
   "globalHeaders": {
     "X-Content-Type-Options": "nosniff",
     "X-Frame-Options": "DENY",
-    "X-XSS-Protection": "1; mode=block",
-    "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
-    "Content-Security-Policy": "default-src 'self' 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com; connect-src 'self' https://f5b1d9c5f3cae77bbd0a47e9d05b5c.17.environment.api.powerplatform.com; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'"
+    "X-XSS-Protection": "1; mode=block"
   },
   "mimeTypes": {
     ".html": "text/html",
