@@ -52,20 +52,15 @@
             --light-blue: #1e3a8a; /* A slightly lighter blue for accents */
         }
 
-        /* Hero section background with custom image */
+        /* Hero section background with automotive image */
         .hero-section {
-            background-image: linear-gradient(45deg, rgba(10, 20, 40, 0.85), rgba(30, 58, 138, 0.75)), url('smarter-way-to-apply.jpg');
+            background-image: linear-gradient(45deg, rgba(10, 20, 40, 0.85), rgba(30, 58, 138, 0.75)), url('https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             position: relative;
             overflow: hidden;
             max-height: 85vh; /* Ensure hero never takes more than 85% of viewport */
             min-height: 500px; /* Minimum height for very small screens */
-        }
-        
-        /* Fallback for when custom image is not available */
-        .hero-section.fallback {
-            background-image: linear-gradient(45deg, rgba(10, 20, 40, 0.85), rgba(30, 58, 138, 0.75)), url('https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
         }
         
         /* Logo styling */
@@ -1530,18 +1525,6 @@
             }
 
             console.log('Jess Recruiting Application - Enhanced Version Loaded Successfully! 🚗✨');
-            
-            // Handle background image fallback
-            const heroSection = document.querySelector('.hero-section');
-            const testImg = new Image();
-            testImg.onload = function() {
-                console.log('Custom background image loaded successfully');
-            };
-            testImg.onerror = function() {
-                console.log('Custom background image not found, using fallback');
-                heroSection.classList.add('fallback');
-            };
-            testImg.src = 'smarter-way-to-apply.jpg';
         });
     </script>
     
