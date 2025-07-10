@@ -97,9 +97,39 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentStepElement = steps[currentStep - 1];
         const fieldsToValidate = currentStepElement.querySelectorAll('input[required], select[required], textarea[required]');
         let isStepValid = true;
+        
+        console.log(`Validating step ${currentStep}, found ${fieldsToValidate.length} required fields`);
+        
         fieldsToValidate.forEach(field => {
-            if (!validateField(field)) isStepValid = false;
+            const fieldValid = validateField(field);
+            if (!fieldValid) {
+                isStepValid = false;
+                console.log(`Field validation failed: ${field.name || field.id}`);
+            }
         });
+        
+        // Mobile-specific: Check file uploads on last step
+        if (currentStep === totalSteps) {
+            const resumeFile = resumeInput ? resumeInput.files[0] : null;
+            if (!resumeFile) {
+                console.log('Resume file is required');
+                isStepValid = false;
+                // Show error message for missing resume
+                const resumeSection = document.querySelector('input[type="file"][name="resume"]');
+                if (resumeSection) {
+                    const errorElement = resumeSection.closest('div').querySelector('.validation-error') ||
+                        resumeSection.parentElement.querySelector('.text-red-500');
+                    if (!errorElement) {
+                        const errorDiv = document.createElement('div');
+                        errorDiv.className = 'text-red-500 text-sm mt-2';
+                        errorDiv.textContent = 'Resume file is required';
+                        resumeSection.parentElement.appendChild(errorDiv);
+                    }
+                }
+            }
+        }
+        
+        console.log(`Step ${currentStep} validation result:`, isStepValid);
         return isStepValid;
     }
 
@@ -182,10 +212,56 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Form Submission ---
     function fileToBase64(file) {
         return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result.split(',')[1]);
-            reader.onerror = error => reject(error);
+            try {
+                console.log('Starting file conversion for:', file.name, 'Size:', file.size, 'Type:', file.type);
+                
+                // Check file size limit (10MB)
+                if (file.size > 10 * 1024 * 1024) {
+                    reject(new Error('File size exceeds 10MB limit'));
+                    return;
+                }
+                
+                const reader = new FileReader();
+                
+                reader.onload = function() {
+                    try {
+                        const result = reader.result;
+                        if (!result || typeof result !== 'string') {
+                            reject(new Error('Failed to read file content'));
+                            return;
+                        }
+                        
+                        const base64 = result.split(',')[1];
+                        if (!base64) {
+                            reject(new Error('Failed to extract base64 content'));
+                            return;
+                        }
+                        
+                        console.log('File conversion successful, base64 length:', base64.length);
+                        resolve(base64);
+                    } catch (error) {
+                        console.error('Error in onload handler:', error);
+                        reject(error);
+                    }
+                };
+                
+                reader.onerror = function(error) {
+                    console.error('FileReader error:', error);
+                    reject(new Error('Failed to read file: ' + (error.target?.error?.message || 'Unknown error')));
+                };
+                
+                reader.onabort = function() {
+                    console.error('FileReader aborted');
+                    reject(new Error('File reading was aborted'));
+                };
+                
+                // Start reading the file
+                reader.readAsDataURL(file);
+                
+            } catch (error) {
+                console.error('Error in fileToBase64:', error);
+                reject(error);
+            }
         });
     }
 
@@ -193,7 +269,19 @@ document.addEventListener('DOMContentLoaded', function() {
     if (form) {
         form.addEventListener('submit', async function(e) {
         e.preventDefault();
-        if (!validateCurrentStep()) return;
+        
+        console.log('Form submission started on device:', navigator.userAgent);
+        
+        if (!validateCurrentStep()) {
+            console.log('Validation failed, stopping submission');
+            return;
+        }
+
+        // Mobile-specific: Prevent multiple submissions
+        if (submitBtn && submitBtn.disabled) {
+            console.log('Submit button already disabled, preventing duplicate submission');
+            return;
+        }
 
         if (submitBtn) {
             submitBtn.disabled = true;
@@ -203,6 +291,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         if (spinner) {
             spinner.classList.remove('hidden');
+        }
+
+        // Mobile-specific: Reset viewport to prevent zoom issues during submission
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        if (isMobile) {
+            document.body.classList.add('form-submitting');
+            const viewport = document.querySelector('meta[name="viewport"]');
+            if (viewport) {
+                viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+            }
         }
 
         // Power Automate URL provided by user
@@ -240,7 +338,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const flatRateFile = flatRateInput ? flatRateInput.files[0] : null;
         const attachments = [];
         
-        // Process resume file
+        console.log('Processing files:', { 
+            resumeFile: resumeFile ? resumeFile.name : 'none', 
+            flatRateFile: flatRateFile ? flatRateFile.name : 'none' 
+        });
+        
+        // Process resume file with better error handling for mobile
         if (resumeFile) {
             payload.resumeName = resumeFile.name;
             payload.resumeFileSize = resumeFile.size;
@@ -248,7 +351,9 @@ document.addEventListener('DOMContentLoaded', function() {
             payload.hasResume = true;
             
             try {
+                console.log('Converting resume file to base64...');
                 const resumeBase64 = await fileToBase64(resumeFile);
+                console.log('Resume file converted successfully, size:', resumeBase64.length);
                 payload.resumeContent = resumeBase64;
                 
                 attachments.push({
@@ -268,7 +373,7 @@ document.addEventListener('DOMContentLoaded', function() {
             payload.hasResume = false;
         }
 
-        // Process flat rate report file
+        // Process flat rate report file with better error handling for mobile
         if (flatRateFile) {
             payload.flatRateReportName = flatRateFile.name;
             payload.flatRateFileSize = flatRateFile.size;
@@ -276,7 +381,9 @@ document.addEventListener('DOMContentLoaded', function() {
             payload.hasFlatRateReport = true;
             
             try {
+                console.log('Converting FlatRate file to base64...');
                 const flatRateBase64 = await fileToBase64(flatRateFile);
+                console.log('FlatRate file converted successfully, size:', flatRateBase64.length);
                 payload.flatRateReportContent = flatRateBase64;
                 
                 attachments.push({
@@ -304,9 +411,17 @@ document.addEventListener('DOMContentLoaded', function() {
         payload.screenResolution = `${screen.width}x${screen.height}`;
         payload.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-        console.log('Submitting payload to Power Automate:', payload);
+        console.log('Submitting payload to Power Automate:', {
+            ...payload,
+            resumeContent: payload.resumeContent ? '[BASE64_DATA_' + payload.resumeContent.length + '_CHARS]' : 'none',
+            flatRateReportContent: payload.flatRateReportContent ? '[BASE64_DATA_' + payload.flatRateReportContent.length + '_CHARS]' : 'none'
+        });
 
         try {
+            console.log('Making fetch request to Power Automate...');
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+            
             const response = await fetch(powerAutomateUrl, {
                 method: 'POST',
                 headers: { 
@@ -314,10 +429,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     'Accept': 'application/json'
                 },
                 body: JSON.stringify(payload),
+                signal: controller.signal
             });
 
+            clearTimeout(timeoutId);
             console.log('Response status:', response.status);
-            console.log('Response headers:', response.headers);
+            console.log('Response headers:', Object.fromEntries(response.headers.entries()));
 
             if (response.ok) {
                 const responseData = await response.text();
@@ -330,11 +447,28 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         } catch (error) {
             console.error('Network error:', error);
-            showResult(errorMessage, 'Network error: ' + error.message);
+            if (error.name === 'AbortError') {
+                showResult(errorMessage, 'Request timeout - please check your connection and try again');
+            } else {
+                showResult(errorMessage, 'Network error: ' + error.message);
+            }
+        } finally {
+            // Mobile-specific: Restore viewport after submission
+            if (isMobile) {
+                document.body.classList.remove('form-submitting');
+                setTimeout(() => {
+                    const viewport = document.querySelector('meta[name="viewport"]');
+                    if (viewport) {
+                        viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
+                    }
+                }, 1000);
+            }
         }
     });
 
     function showResult(messageElement, errorInfo = '') {
+        console.log('Showing result:', messageElement ? messageElement.id : 'null', errorInfo ? 'with error' : 'success');
+        
         // Reset button state with safety checks
         if (submitBtn) {
             submitBtn.disabled = false;
@@ -346,6 +480,9 @@ document.addEventListener('DOMContentLoaded', function() {
             spinner.classList.add('hidden');
         }
         
+        // Mobile-specific: Remove form submission state
+        document.body.classList.remove('form-submitting');
+        
         if (messageElement && messageElement.id === 'successMessage') {
             const successText = document.getElementById('successText');
             if (successText) {
@@ -356,9 +493,23 @@ document.addEventListener('DOMContentLoaded', function() {
             if (form) {
                 form.style.display = 'none';
             }
+            
+            // Mobile-specific: Scroll to success message
+            setTimeout(() => {
+                messageElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
         } else {
             // Show form again on error so user can retry
-            // form.style.display = 'block'; // Uncomment if you want to show form on error
+            if (form) {
+                form.style.display = 'block';
+            }
+            
+            // Mobile-specific: Scroll to error message
+            if (messageElement) {
+                setTimeout(() => {
+                    messageElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
         }
         
         if (messageElement) {
@@ -366,7 +517,18 @@ document.addEventListener('DOMContentLoaded', function() {
             messageElement.classList.add('active');
         }
 
-        if (errorInfo) console.error('Submission Error:', errorInfo);
+        if (errorInfo) {
+            console.error('Submission Error:', errorInfo);
+            // Mobile-specific: Show user-friendly error message
+            if (messageElement && messageElement.id === 'errorMessage') {
+                const errorTextElement = messageElement.querySelector('p');
+                if (errorTextElement && errorInfo.includes('Network')) {
+                    errorTextElement.textContent = 'Network error - please check your connection and try again.';
+                } else if (errorInfo.includes('timeout')) {
+                    errorTextElement.textContent = 'Request timed out - please try again.';
+                }
+            }
+        }
     }
 
     // Close the if statement for form existence check

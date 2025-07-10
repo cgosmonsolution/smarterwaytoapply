@@ -10,17 +10,25 @@ function initMobileOptimizations() {
         // Prevent zoom on input focus for iOS
         const inputs = document.querySelectorAll('input, select, textarea');
         inputs.forEach(input => {
+            // Store original viewport content
+            const originalViewport = document.querySelector('meta[name="viewport"]').getAttribute('content');
+            
             input.addEventListener('focus', function() {
-                document.querySelector('meta[name="viewport"]').setAttribute('content', 
-                    'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-            });
+                // Only prevent zoom if not already prevented by form submission
+                if (!document.body.classList.contains('form-submitting')) {
+                    document.querySelector('meta[name="viewport"]').setAttribute('content', 
+                        'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+                }
+            }, { passive: true });
             
             input.addEventListener('blur', function() {
+                // Only restore viewport if not in form submission
                 setTimeout(() => {
-                    document.querySelector('meta[name="viewport"]').setAttribute('content', 
-                        'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
+                    if (!document.body.classList.contains('form-submitting')) {
+                        document.querySelector('meta[name="viewport"]').setAttribute('content', originalViewport);
+                    }
                 }, 100);
-            });
+            }, { passive: true });
         });
         
         // Enhanced touch interactions for testimonial carousel
