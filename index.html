@@ -1192,6 +1192,8 @@
         }
         
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM Content Loaded - Starting form initialization');
+            
             // --- Element Selections ---
             const formContainer = document.getElementById('form-container');
             const form = document.getElementById('multiStepForm');
@@ -1201,10 +1203,18 @@
             const submitBtn = document.getElementById('submitBtn');
             const progressSteps = document.querySelectorAll('.progress-step-item');
             
+            console.log('Form elements found:', {
+                form: !!form,
+                submitBtn: !!submitBtn,
+                nextBtn: !!nextBtn,
+                prevBtn: !!prevBtn,
+                steps: steps.length
+            });
+            
             const successMessage = document.getElementById('successMessage');
             const errorMessage = document.getElementById('errorMessage');
-            const btnText = submitBtn.querySelector('.btn-text');
-            const spinner = submitBtn.querySelector('.spinner');
+            const btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
+            const spinner = submitBtn ? submitBtn.querySelector('.spinner') : null;
 
             // --- State ---
             let currentStep = 1;
@@ -1303,14 +1313,24 @@
             const fileNameDisplay = document.getElementById('fileName');
             const resumeLabel = document.querySelector('label[for="resume"]');
             
-            resumeLabel.parentElement.addEventListener('click', () => resumeInput.click());
-            resumeInput.addEventListener('change', () => {
-                if (resumeInput.files.length > 0) {
-                    fileNameDisplay.textContent = `File selected: ${resumeInput.files[0].name}`;
-                } else {
-                    fileNameDisplay.textContent = '';
-                }
-            });
+            // Add safety checks
+            if (resumeLabel && resumeLabel.parentElement) {
+                resumeLabel.parentElement.addEventListener('click', () => resumeInput.click());
+            }
+            
+            if (resumeInput) {
+                resumeInput.addEventListener('change', () => {
+                    if (resumeInput.files.length > 0) {
+                        if (fileNameDisplay) {
+                            fileNameDisplay.textContent = `File selected: ${resumeInput.files[0].name}`;
+                        }
+                    } else {
+                        if (fileNameDisplay) {
+                            fileNameDisplay.textContent = '';
+                        }
+                    }
+                });
+            }
 
             // --- Form Submission ---
             function fileToBase64(file) {
@@ -1322,13 +1342,21 @@
                 });
             }
 
-            form.addEventListener('submit', async function(e) {
+            // Only add form submission listener if form exists
+            if (form) {
+                form.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 if (!validateCurrentStep()) return;
 
-                submitBtn.disabled = true;
-                btnText.textContent = 'Submitting...';
-                spinner.classList.remove('hidden');
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                }
+                if (btnText) {
+                    btnText.textContent = 'Submitting...';
+                }
+                if (spinner) {
+                    spinner.classList.remove('hidden');
+                }
 
                 // Power Automate URL provided by user
                 const powerAutomateUrl = 'https://f5b1d9c5f3cae77bbd0a47e9d05b5c.17.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/de7ecf3454634a98a76282f3f046f43a/triggers/manual/paths/invoke/?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vtKu5ftKb6i5T6feS-MgqSUdJxOsYNM0Mq8Fg79aSxs';
@@ -1424,28 +1452,46 @@
             });
 
             function showResult(messageElement, errorInfo = '') {
-                // Reset button state
-                submitBtn.disabled = false;
-                btnText.textContent = 'Submit Application';
-                spinner.classList.add('hidden');
+                // Reset button state with safety checks
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                }
+                if (btnText) {
+                    btnText.textContent = 'Submit Application';
+                }
+                if (spinner) {
+                    spinner.classList.add('hidden');
+                }
                 
-                if (messageElement.id === 'successMessage') {
+                if (messageElement && messageElement.id === 'successMessage') {
                     const successText = document.getElementById('successText');
-                    successText.textContent = `Thank you, ${applicantFirstName || 'friend'}. We've received your application and will be in touch soon.`;
+                    if (successText) {
+                        successText.textContent = `Thank you, ${applicantFirstName || 'friend'}. We've received your application and will be in touch soon.`;
+                    }
                     
-                    document.getElementById('returnBtn').addEventListener('click', () => window.location.reload());
+                    const returnBtn = document.getElementById('returnBtn');
+                    if (returnBtn) {
+                        returnBtn.addEventListener('click', () => window.location.reload());
+                    }
                     
                     // Keep form hidden on success
-                    form.style.display = 'none';
+                    if (form) {
+                        form.style.display = 'none';
+                    }
                 } else {
                     // Show form again on error so user can retry
                     // form.style.display = 'block'; // Uncomment if you want to show form on error
                 }
                 
-                messageElement.classList.remove('hidden');
-                messageElement.classList.add('active');
+                if (messageElement) {
+                    messageElement.classList.remove('hidden');
+                    messageElement.classList.add('active');
+                }
 
                 if (errorInfo) console.error('Submission Error:', errorInfo);
+            }
+
+            // Close the if statement for form existence check
             }
 
             // --- Initial Setup ---
