@@ -2,7 +2,11 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <title>Jess Recruiting - A Smarter Way to Apply for Automotive Jobs</title>
     <meta name="description" content="Join top automotive professionals with Jess Recruiting. One application connects you with premier repair shops and dealerships. Start your career today!">
     <meta name="keywords" content="automotive jobs, mechanic jobs, auto technician, dealership careers, repair shop jobs, automotive recruitment">
@@ -55,6 +59,8 @@
             background-position: center;
             position: relative;
             overflow: hidden;
+            max-height: 85vh; /* Ensure hero never takes more than 85% of viewport */
+            min-height: 500px; /* Minimum height for very small screens */
         }
         
         /* Fallback for when custom image is not available */
@@ -64,9 +70,248 @@
         
         /* Logo styling */
         .company-logo {
-            max-height: 80px;
+            max-height: 120px;
             width: auto;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            /* Logo adjustments */
+            .company-logo {
+                max-height: 70px;
+                margin-bottom: 0.75rem;
+            }
+            
+            /* Hero section mobile optimizations */
+            .hero-section {
+                padding: 2rem 0 1.5rem;
+                max-height: 90vh; /* Even more restrictive on mobile */
+                min-height: 450px;
+            }
+            
+            .hero-section .container {
+                padding: 0 1rem;
+            }
+            
+            /* Typography scaling for mobile */
+            .hero-section h1 {
+                font-size: 2.5rem !important;
+                line-height: 1.1;
+                margin-bottom: 1.5rem;
+            }
+            
+            .hero-section p {
+                font-size: 1.125rem !important;
+                margin-bottom: 2rem;
+            }
+            
+            /* Testimonial carousel mobile - ultra compact */
+            #testimonialCarousel {
+                margin: 0.5rem auto !important;
+                max-width: 85%;
+                padding: 0.5rem;
+                max-height: 100px;
+                overflow: hidden;
+            }
+            
+            .testimonial-slide p {
+                font-size: 0.75rem !important;
+                line-height: 1.2;
+                margin: 0;
+            }
+            
+            .testimonial-slide .font-semibold {
+                font-size: 0.75rem !important;
+            }
+            
+            /* CTA button mobile */
+            .btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.875rem;
+                margin-top: 1rem !important;
+            }
+            
+            /* Hide floating elements on mobile for performance */
+            .float-animation,
+            .particle {
+                display: none;
+            }
+            
+            /* Form container mobile */
+            .md\\:grid-cols-12 {
+                grid-template-columns: 1fr !important;
+            }
+            
+            /* Progress bar mobile - make horizontal */
+            .md\\:col-span-4 {
+                order: 2;
+                padding: 1rem;
+                background: transparent;
+                border: none;
+            }
+            
+            .md\\:col-span-8 {
+                order: 1;
+                padding: 1.5rem;
+            }
+            
+            #progress-bar {
+                display: flex;
+                overflow-x: auto;
+                gap: 0.5rem;
+                padding: 1rem 0;
+                margin: 0;
+            }
+            
+            .progress-step-item {
+                min-width: 120px;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 0.5rem;
+                border-radius: 0.5rem;
+            }
+            
+            .progress-step-item .icon-wrapper {
+                width: 2.5rem;
+                height: 2.5rem;
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+            }
+            
+            .progress-step-item .step-text .step-number {
+                font-size: 0.75rem;
+            }
+            
+            .progress-step-item .step-text .step-title {
+                font-size: 0.875rem;
+            }
+            
+            /* Form steps mobile */
+            .form-step h3 {
+                font-size: 1.875rem !important;
+                margin-bottom: 1rem;
+            }
+            
+            .form-step p {
+                margin-bottom: 1.5rem;
+            }
+            
+            /* Input adjustments for mobile */
+            input, select, textarea {
+                padding: 0.875rem 1rem;
+                font-size: 1rem !important;
+            }
+            
+            .has-icon {
+                padding-left: 2.5rem;
+            }
+            
+            .input-icon {
+                left: 0.75rem;
+            }
+            
+            /* Navigation buttons mobile */
+            .mt-12 {
+                margin-top: 2rem !important;
+            }
+            
+            /* Why Us section mobile */
+            .lg\\:grid-cols-3 {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+            
+            /* Footer mobile */
+            footer .container {
+                padding: 2rem 1rem;
+            }
+        }
+        
+        /* Small mobile devices (phones in portrait) */
+        @media (max-width: 480px) {
+            .hero-section {
+                max-height: 95vh; /* Very restrictive on small screens */
+                min-height: 400px;
+                padding: 1.5rem 0 1rem;
+            }
+            
+            .hero-section h1 {
+                font-size: 2rem !important;
+            }
+            
+            .hero-section p {
+                font-size: 1rem !important;
+            }
+            
+            #testimonialCarousel {
+                max-width: 95%;
+                padding: 0.75rem;
+                margin: 1rem auto !important;
+            }
+            
+            .testimonial-slide .w-12 {
+                width: 2.5rem !important;
+                height: 2.5rem !important;
+            }
+            
+            .btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.875rem;
+            }
+            
+            .form-step h3 {
+                font-size: 1.5rem !important;
+            }
+            
+            .md\\:col-span-8 {
+                padding: 1rem;
+            }
+            
+            /* Make progress bar more compact on very small screens */
+            .progress-step-item {
+                min-width: 100px;
+            }
+            
+            .progress-step-item .step-text .step-title {
+                font-size: 0.75rem;
+            }
+        }
+        
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .btn:hover {
+                transform: none;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            }
+            
+            .card-hover:hover {
+                transform: none;
+            }
+            
+            .progress-step-item:hover {
+                background-color: transparent;
+            }
+            
+            /* Make touch targets larger */
+            .testimonial-dot {
+                width: 44px !important;
+                height: 44px !important;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .testimonial-dot::before {
+                content: '';
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background-color: currentColor;
+            }
         }
 
         .hero-section::before {
@@ -377,6 +622,79 @@
             opacity: 1;
             visibility: visible;
         }
+        
+        /* Additional Mobile-Specific Enhancements */
+        .mobile-device .btn {
+            min-height: 44px;
+            min-width: 44px;
+        }
+        
+        .mobile-device input,
+        .mobile-device select,
+        .mobile-device textarea {
+            min-height: 44px;
+            border-radius: 8px;
+        }
+        
+        .mobile-device .testimonial-dot {
+            min-width: 44px;
+            min-height: 44px;
+        }
+        
+        /* Prevent text selection on mobile for better UX */
+        .mobile-device .progress-step-item,
+        .mobile-device .testimonial-slide,
+        .mobile-device .btn {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        /* Smooth scrolling for mobile */
+        @media (max-width: 768px) {
+            html {
+                scroll-behavior: smooth;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            /* Improve form focus states on mobile */
+            input:focus,
+            select:focus,
+            textarea:focus {
+                transform: none;
+                outline: 2px solid var(--light-blue);
+                outline-offset: 2px;
+            }
+            
+            /* Better file upload on mobile */
+            input[type="file"] + label {
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+            }
+            
+            /* Optimize animations for mobile performance */
+            .float-animation,
+            .pulse-border,
+            .gradient-shift {
+                will-change: auto;
+                transform: translateZ(0);
+            }
+        }
+        
+        /* iOS specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            .mobile-device input,
+            .mobile-device select,
+            .mobile-device textarea {
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+            
+            .mobile-device .btn {
+                -webkit-appearance: none;
+                appearance: none;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -402,7 +720,7 @@
         <div class="absolute bottom-20 right-20 w-16 h-16 bg-white rounded-full opacity-10 float-animation" style="animation-delay: 1s;"></div>
         <div class="absolute top-1/2 left-20 w-12 h-12 bg-[var(--jess-yellow)] rounded-full opacity-15 float-animation" style="animation-delay: 2s;"></div>
         
-        <div class="container mx-auto px-6 py-24 md:py-32 text-center relative z-10">
+        <div class="container mx-auto px-6 py-12 md:py-16 text-center relative z-10">
             <!-- Company Logo -->
             <div class="mb-8">
                 <img src="jess-recruiting-logo.png" alt="Jess Recruiting Logo" class="company-logo mx-auto" onerror="this.style.display='none';">
@@ -415,76 +733,60 @@
             <p class="mt-6 text-lg md:text-xl max-w-3xl mx-auto text-gray-300" data-aos="fade-up" data-aos-delay="700">
                 One application connects you with top-tier repair shops and dealerships. Stop searching, start getting noticed.
             </p>
-            
-            <!-- Statistics Counter -->
-            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="900">
-                <div class="text-center">
-                    <div class="text-4xl font-bold text-[var(--jess-yellow)] stat-number" data-target="500">51</div>
-                    <div class="text-sm text-gray-300 mt-2">Jobs Filled</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl font-bold text-[var(--jess-yellow)] stat-number" data-target="150">25</div>
-                    <div class="text-sm text-gray-300 mt-2">Partner Shops</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl font-bold text-[var(--jess-yellow)] stat-number" data-target="98">95</div>
-                    <div class="text-sm text-gray-300 mt-2">Success Rate %</div>
-                </div>
-            </div>
 
             <!-- Enhanced Rotating Testimonials -->
-            <div class="mt-16 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="1100">
-                <div id="testimonialCarousel" class="relative overflow-hidden bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+            <div class="mt-3 max-w-lg mx-auto" data-aos="fade-up" data-aos-delay="900">
+                <div id="testimonialCarousel" class="relative overflow-hidden bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
                     <div class="testimonial-slide active">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-[var(--jess-yellow)] rounded-full flex items-center justify-center text-gray-900 font-bold mr-4">MS</div>
+                        <div class="flex items-center mb-1">
+                            <div class="w-6 h-6 bg-[var(--jess-yellow)] rounded-full flex items-center justify-center text-gray-900 font-bold mr-2 text-xs">TC</div>
                             <div>
-                                <div class="font-semibold">Mike S.</div>
-                                <div class="text-sm text-gray-300">Master Technician</div>
+                                <div class="font-semibold text-xs">Tom C.</div>
+                                <div class="text-xs text-gray-300">B-Level Technician</div>
                             </div>
                         </div>
-                        <p class="text-lg italic">"Jess Recruiting helped me find my dream job at a top dealership in just 2 weeks!"</p>
-                        <div class="mt-4 flex text-[var(--jess-yellow)]">
+                        <p class="text-xs italic">"They found me a great position at an independent shop where my skills are valued and respected."</p>
+                        <div class="mt-1 flex text-[var(--jess-yellow)] text-xs">
                             <span>★★★★★</span>
                         </div>
                     </div>
                     <div class="testimonial-slide">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-[var(--jess-yellow)] rounded-full flex items-center justify-center text-gray-900 font-bold mr-4">SL</div>
+                        <div class="flex items-center mb-1">
+                            <div class="w-6 h-6 bg-[var(--jess-yellow)] rounded-full flex items-center justify-center text-gray-900 font-bold mr-2 text-xs">AM</div>
                             <div>
-                                <div class="font-semibold">Sarah L.</div>
-                                <div class="text-sm text-gray-300">Service Manager</div>
+                                <div class="font-semibold text-xs">Ana M.</div>
+                                <div class="text-xs text-gray-300">Service Advisor</div>
                             </div>
                         </div>
-                        <p class="text-lg italic">"Professional, fast, and they really understand the automotive industry."</p>
-                        <div class="mt-4 flex text-[var(--jess-yellow)]">
+                        <p class="text-xs italic">"Jess Recruiting understood what I was looking for - a family-owned shop that treats people right."</p>
+                        <div class="mt-1 flex text-[var(--jess-yellow)] text-xs">
                             <span>★★★★★</span>
                         </div>
                     </div>
                     <div class="testimonial-slide">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-[var(--jess-yellow)] rounded-full flex items-center justify-center text-gray-900 font-bold mr-4">CR</div>
+                        <div class="flex items-center mb-1">
+                            <div class="w-6 h-6 bg-[var(--jess-yellow)] rounded-full flex items-center justify-center text-gray-900 font-bold mr-2 text-xs">DJ</div>
                             <div>
-                                <div class="font-semibold">Carlos R.</div>
-                                <div class="text-sm text-gray-300">Diagnostic Specialist</div>
+                                <div class="font-semibold text-xs">David J.</div>
+                                <div class="text-xs text-gray-300">Master Technician</div>
                             </div>
                         </div>
-                        <p class="text-lg italic">"One application, multiple offers. This is how job searching should work!"</p>
-                        <div class="mt-4 flex text-[var(--jess-yellow)]">
+                        <p class="text-xs italic">"They connected me with a shop that values mentorship and skill development. It's free for candidates."</p>
+                        <div class="mt-1 flex text-[var(--jess-yellow)] text-xs">
                             <span>★★★★★</span>
                         </div>
                     </div>
                     
                     <!-- Testimonial navigation dots -->
-                    <div class="flex justify-center mt-6 space-x-2">
-                        <button class="testimonial-dot w-3 h-3 rounded-full bg-white/50 active:bg-[var(--jess-yellow)] transition-colors" data-slide="0"></button>
-                        <button class="testimonial-dot w-3 h-3 rounded-full bg-white/50 transition-colors" data-slide="1"></button>
-                        <button class="testimonial-dot w-3 h-3 rounded-full bg-white/50 transition-colors" data-slide="2"></button>
+                    <div class="flex justify-center mt-2 space-x-2">
+                        <button class="testimonial-dot w-2 h-2 rounded-full bg-white/50 active:bg-[var(--jess-yellow)] transition-colors" data-slide="0"></button>
+                        <button class="testimonial-dot w-2 h-2 rounded-full bg-white/50 transition-colors" data-slide="1"></button>
+                        <button class="testimonial-dot w-2 h-2 rounded-full bg-white/50 transition-colors" data-slide="2"></button>
                     </div>
                 </div>
             </div>
 
-            <a href="#application-form" class="btn btn-primary mt-12 text-lg pulse-border" data-aos="zoom-in" data-aos-delay="1300">
+            <a href="#application-form" class="btn btn-primary mt-4 text-lg pulse-border" data-aos="zoom-in" data-aos-delay="1100">
                 Start Your Application
                 <svg class="inline-block ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
@@ -665,6 +967,17 @@
                                             <label class="flex items-center p-3 border border-gray-200 rounded-lg has-[:checked]:bg-blue-50 has-[:checked]:border-[var(--light-blue)] cursor-pointer"><input type="checkbox" name="availability" value="Flexible" class="form-checkbox rounded h-5 w-5 mr-3" style="color: var(--dark-blue);"> <span class="font-medium">Flexible</span></label>
                                         </div>
                                     </div>
+                                    <div>
+                                        <label for="relocate" class="required-label">Are you willing to relocate for the right opportunity?</label>
+                                        <select id="relocate" name="relocate" required>
+                                            <option value="">Select an option...</option>
+                                            <option value="Yes, anywhere">Yes, anywhere</option>
+                                            <option value="Yes, within my state">Yes, within my state</option>
+                                            <option value="Yes, within 50 miles">Yes, within 50 miles</option>
+                                            <option value="No, local positions only">No, local positions only</option>
+                                        </select>
+                                        <span class="validation-error hidden">Please select your relocation preference.</span>
+                                    </div>
                                 </div>
                             </div>
 
@@ -773,6 +1086,111 @@
 
 
     <script>
+        // Mobile-specific optimizations and touch enhancements
+        function initMobileOptimizations() {
+            // Detect mobile device
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            
+            if (isMobile || isTouch) {
+                document.body.classList.add('mobile-device');
+                
+                // Prevent zoom on input focus for iOS
+                const inputs = document.querySelectorAll('input, select, textarea');
+                inputs.forEach(input => {
+                    input.addEventListener('focus', function() {
+                        document.querySelector('meta[name="viewport"]').setAttribute('content', 
+                            'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+                    });
+                    
+                    input.addEventListener('blur', function() {
+                        setTimeout(() => {
+                            document.querySelector('meta[name="viewport"]').setAttribute('content', 
+                                'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
+                        }, 100);
+                    });
+                });
+                
+                // Enhanced touch interactions for testimonial carousel
+                let touchStartX = 0;
+                let touchEndX = 0;
+                const carousel = document.getElementById('testimonialCarousel');
+                
+                if (carousel) {
+                    carousel.addEventListener('touchstart', function(e) {
+                        touchStartX = e.changedTouches[0].screenX;
+                    }, { passive: true });
+                    
+                    carousel.addEventListener('touchend', function(e) {
+                        touchEndX = e.changedTouches[0].screenX;
+                        handleSwipe();
+                    }, { passive: true });
+                    
+                    function handleSwipe() {
+                        const swipeThreshold = 50;
+                        const diff = touchStartX - touchEndX;
+                        
+                        if (Math.abs(diff) > swipeThreshold) {
+                            const dots = document.querySelectorAll('.testimonial-dot');
+                            const activeDot = document.querySelector('.testimonial-dot.active');
+                            let currentIndex = Array.from(dots).indexOf(activeDot) || 0;
+                            
+                            if (diff > 0 && currentIndex < dots.length - 1) {
+                                // Swipe left - next testimonial
+                                dots[currentIndex + 1].click();
+                            } else if (diff < 0 && currentIndex > 0) {
+                                // Swipe right - previous testimonial
+                                dots[currentIndex - 1].click();
+                            }
+                        }
+                    }
+                }
+                
+                // Improve form scrolling on mobile
+                const formSteps = document.querySelectorAll('.form-step');
+                formSteps.forEach(step => {
+                    step.addEventListener('transitionend', function() {
+                        if (step.classList.contains('active')) {
+                            // Smooth scroll to top of form on mobile
+                            const formElement = document.getElementById('application-form');
+                            if (formElement && window.innerWidth <= 768) {
+                                setTimeout(() => {
+                                    formElement.scrollIntoView({ 
+                                        behavior: 'smooth', 
+                                        block: 'start',
+                                        inline: 'nearest' 
+                                    });
+                                }, 300);
+                            }
+                        }
+                    });
+                });
+            }
+            
+            // Optimize performance on mobile
+            if (window.innerWidth <= 768) {
+                // Reduce animation complexity on mobile
+                const particles = document.querySelectorAll('.particle');
+                particles.forEach(particle => particle.remove());
+                
+                // Optimize AOS settings for mobile
+                if (typeof AOS !== 'undefined') {
+                    AOS.refresh({
+                        duration: 600,
+                        offset: 50,
+                        once: true
+                    });
+                }
+            }
+        }
+        
+        // Initialize mobile optimizations as soon as possible
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initMobileOptimizations);
+        } else {
+            initMobileOptimizations();
+        }
+        
         document.addEventListener('DOMContentLoaded', function() {
             // --- Element Selections ---
             const formContainer = document.getElementById('form-container');
@@ -782,7 +1200,6 @@
             const prevBtn = document.querySelector('.prev-btn');
             const submitBtn = document.getElementById('submitBtn');
             const progressSteps = document.querySelectorAll('.progress-step-item');
-            const statNumbers = document.querySelectorAll('.stat-number');
             
             const successMessage = document.getElementById('successMessage');
             const errorMessage = document.getElementById('errorMessage');
@@ -825,27 +1242,6 @@
                     if(applicantFirstName) {
                         submitTitle.textContent = `Alright, ${applicantFirstName}, one last step!`;
                     }
-                }
-
-                // Update statistics counters
-                if (currentStep === 1) {
-                    statNumbers.forEach((number, index) => {
-                        setTimeout(() => {
-                            number.classList.add('counting');
-                            const targetValue = number.dataset.target;
-                            let startValue = 0;
-                            const duration = 2000;
-                            const stepTime = Math.abs(Math.floor(duration / targetValue));
-                            
-                            const timer = setInterval(() => {
-                                startValue += 1;
-                                number.textContent = startValue;
-                                if (startValue === parseInt(targetValue)) {
-                                    clearInterval(timer);
-                                }
-                            }, stepTime);
-                        }, index * 300);
-                    });
                 }
             }
 
@@ -934,13 +1330,22 @@
                 btnText.textContent = 'Submitting...';
                 spinner.classList.remove('hidden');
 
-                const powerAutomateUrl = 'https://f5b1d9c5f3cae77bbd0a47e9d05b5c.17.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/de7ecf3454634a98a76282f3f046f43a/triggers/manual/paths/invoke/?api-version=1&tenantId=tId&environmentId=f5b1d9c5-f3ca-e77b-bd0a-47e9d05b5c17&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vtKu5ftKb6i5T6feS-MgqSUdJxOsYNM0Mq8Fg79aSxs';
+                // Power Automate URL provided by user
+                const powerAutomateUrl = 'https://f5b1d9c5f3cae77bbd0a47e9d05b5c.17.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/de7ecf3454634a98a76282f3f046f43a/triggers/manual/paths/invoke/?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vtKu5ftKb6i5T6feS-MgqSUdJxOsYNM0Mq8Fg79aSxs';
                 
-                const payload = {};
+                // Collect all form data
                 const formData = new FormData(form);
+                const payload = {
+                    submissionDate: new Date().toISOString(),
+                    applicationId: 'APP-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9)
+                };
                 
+                // Process regular form fields with exact names expected by Power Automate
                 for (const [key, value] of formData.entries()) {
+                    if (key === 'resume') continue; // Handle file separately
+                    
                     if (payload[key]) {
+                        // Handle multiple values (like checkboxes)
                         if (!Array.isArray(payload[key])) payload[key] = [payload[key]];
                         payload[key].push(value);
                     } else {
@@ -948,51 +1353,95 @@
                     }
                 }
 
+                // Convert array fields to comma-separated strings for easier processing
                 if (payload.availability && Array.isArray(payload.availability)) {
                     payload.availability = payload.availability.join(', ');
                 }
 
+                // Relocate field is now properly collected from the form
+
+                // Handle resume file with exact field names expected by Power Automate
                 const resumeFile = resumeInput.files[0];
-                delete payload.resume;
                 if (resumeFile) {
-                    payload.resumeName = resumeFile.name;
+                    payload.resumeName = resumeFile.name;  // This matches your email template
+                    payload.resumeFileName = resumeFile.name; // Backup field name
+                    payload.resumeFileSize = resumeFile.size;
+                    payload.resumeFileType = resumeFile.type;
+                    
                     try {
-                        payload.resumeContent = await fileToBase64(resumeFile);
+                        // Convert file to base64 for transmission
+                        payload.resumeContent = await fileToBase64(resumeFile);  // This matches your email template
+                        payload.resumeFileContent = payload.resumeContent; // Backup field name
+                        payload.hasResume = true;
                     } catch (error) {
-                        showResult(errorMessage, error); return;
+                        console.error('Error processing resume file:', error);
+                        showResult(errorMessage, 'Error processing resume file: ' + error.message);
+                        return;
                     }
                 } else {
                     payload.resumeName = 'No file uploaded';
+                    payload.resumeFileName = 'No file uploaded';
+                    payload.resumeFileSize = 0;
+                    payload.resumeFileType = null;
                     payload.resumeContent = '';
+                    payload.resumeFileContent = '';
+                    payload.hasResume = false;
                 }
+
+                // Add metadata
+                payload.userAgent = navigator.userAgent;
+                payload.screenResolution = `${screen.width}x${screen.height}`;
+                payload.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+                console.log('Submitting payload to Power Automate:', payload);
 
                 try {
                     const response = await fetch(powerAutomateUrl, {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
                         body: JSON.stringify(payload),
                     });
 
+                    console.log('Response status:', response.status);
+                    console.log('Response headers:', response.headers);
+
                     if (response.ok) {
+                        const responseData = await response.text();
+                        console.log('Success response:', responseData);
                         showResult(successMessage);
                     } else {
                         const responseText = await response.text();
+                        console.error('Error response:', responseText);
                         showResult(errorMessage, `Status: ${response.status}, Response: ${responseText}`);
                     }
                 } catch (error) {
-                    showResult(errorMessage, error);
+                    console.error('Network error:', error);
+                    showResult(errorMessage, 'Network error: ' + error.message);
                 }
             });
 
             function showResult(messageElement, errorInfo = '') {
+                // Reset button state
+                submitBtn.disabled = false;
+                btnText.textContent = 'Submit Application';
+                spinner.classList.add('hidden');
+                
                 if (messageElement.id === 'successMessage') {
                     const successText = document.getElementById('successText');
                     successText.textContent = `Thank you, ${applicantFirstName || 'friend'}. We've received your application and will be in touch soon.`;
                     
                     document.getElementById('returnBtn').addEventListener('click', () => window.location.reload());
+                    
+                    // Keep form hidden on success
+                    form.style.display = 'none';
+                } else {
+                    // Show form again on error so user can retry
+                    // form.style.display = 'block'; // Uncomment if you want to show form on error
                 }
                 
-                form.style.display = 'none';
                 messageElement.classList.remove('hidden');
                 messageElement.classList.add('active');
 
@@ -1032,42 +1481,6 @@
                     progressBar.style.width = `${progress}%`;
                     progressPercent.textContent = `${Math.round(progress)}%`;
                 };
-            }
-
-            // Enhanced statistics counter
-            function animateCounter(element, target, duration = 2000) {
-                let current = 0;
-                const increment = target / (duration / 16);
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
-                    element.textContent = Math.floor(current);
-                }, 16);
-            }
-
-            // Trigger counters when hero section is visible
-            if (statNumbers.length > 0) {
-                const observerOptions = {
-                    threshold: 0.5,
-                    rootMargin: '0px 0px -50px 0px'
-                };
-
-                const counterObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const target = parseInt(entry.target.dataset.target);
-                            animateCounter(entry.target, target);
-                            counterObserver.unobserve(entry.target);
-                        }
-                    });
-                }, observerOptions);
-
-                statNumbers.forEach(stat => {
-                    counterObserver.observe(stat);
-                });
             }
 
             console.log('Jess Recruiting Application - Enhanced Version Loaded Successfully! 🚗✨');
