@@ -717,8 +717,12 @@
         
         <div class="container mx-auto px-6 py-12 md:py-16 text-center relative z-10">
             <!-- Company Logo -->
-            <div class="mb-8">
-                <img src="jess-recruiting-logo.png" alt="Jess Recruiting Logo" class="company-logo mx-auto" onerror="this.style.display='none';">
+            <div class="mb-8" id="logoContainer">
+                <!-- Temporarily showing text logo while debugging image -->
+                <div class="text-3xl md:text-4xl font-bold text-[var(--jess-yellow)] mb-4">
+                    JESS RECRUITING
+                </div>
+                <img id="companyLogo" src="/jess-recruiting-logo.png" alt="Jess Recruiting Logo" class="company-logo mx-auto" style="display: none;">
             </div>
             
             <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight" data-aos="fade-up" data-aos-duration="1000">

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logo Test</title>
+</head>
+<body>
+    <h1>Logo Test Page</h1>
+    
+    <h2>Test 1: Absolute Path</h2>
+    <img src="/jess-recruiting-logo.png" alt="Logo Test 1" style="max-height: 100px; border: 1px solid red;" 
+         onload="console.log('Test 1 SUCCESS')" onerror="console.log('Test 1 FAILED')">
+    
+    <h2>Test 2: Relative Path</h2>
+    <img src="./jess-recruiting-logo.png" alt="Logo Test 2" style="max-height: 100px; border: 1px solid blue;" 
+         onload="console.log('Test 2 SUCCESS')" onerror="console.log('Test 2 FAILED')">
+    
+    <h2>Test 3: No Path</h2>
+    <img src="jess-recruiting-logo.png" alt="Logo Test 3" style="max-height: 100px; border: 1px solid green;" 
+         onload="console.log('Test 3 SUCCESS')" onerror="console.log('Test 3 FAILED')">
+
+    <script>
+        console.log('Logo test page loaded');
+        console.log('Current URL:', window.location.href);
+        
+        // Test if we can fetch the logo
+        fetch('/jess-recruiting-logo.png')
+            .then(response => {
+                console.log('Fetch test result:', response.status, response.statusText);
+                return response.blob();
+            })
+            .then(blob => {
+                console.log('Logo blob size:', blob.size, 'bytes');
+            })
+            .catch(error => {
+                console.error('Fetch test failed:', error);
+            });
+    </script>
+</body>
+</html>
