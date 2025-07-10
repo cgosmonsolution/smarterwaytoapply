@@ -6,10 +6,11 @@ const urlsToCache = [
     '/',
     '/index.html',
     '/enhanced.js',
-    'https://cdn.tailwindcss.com',
-    'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap',
-    'https://unpkg.com/aos@2.3.1/dist/aos.css',
-    'https://unpkg.com/aos@2.3.1/dist/aos.js'
+    '/form-handler.js',
+    '/mobile-optimizations.js',
+    '/jess-recruiting-logo.png'
+    // Note: External CDNs (Tailwind, Google Fonts, AOS) are excluded to avoid CORS issues
+    // They will be fetched from network when needed
 ];
 
 // Install event - cache resources
