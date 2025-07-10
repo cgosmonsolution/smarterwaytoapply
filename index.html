@@ -435,6 +435,24 @@
         }
 
         /* Enhanced validation styling */
+        label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.25rem;
+        }
+        .required-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.25rem;
+        }
+        .required-label:after {
+            content: " *";
+            color: #dc2626;
+        }
         .border-red-500 {
             border-color: #ef4444 !important;
             box-shadow: 0 0 0 2px #ef4444 !important;
